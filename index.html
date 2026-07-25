@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUQ care - Guia Santos</title>
+    <style>
+        /* Importando fontes do Google */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #FAFAFA; }
+
+        /* CABEÇALHO (ROXO) */
+        header { background-color: #582A9D; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; color: white; }
+        
+        .search-box { background: white; border-radius: 25px; padding: 8px 15px; display: flex; align-items: center; width: 300px; }
+        .search-box input { border: none; outline: none; width: 100%; color: #582A9D; font-size: 14px; }
+        .search-box svg { fill: #582A9D; width: 20px; height: 20px; cursor: pointer; }
+
+        .logo h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; letter-spacing: 2px; }
+        
+        .whatsapp { display: flex; flex-direction: column; align-items: center; font-size: 12px; cursor: pointer; }
+        .whatsapp svg { width: 24px; height: 24px; fill: white; margin-bottom: 3px; }
+
+        .sub-header { background-color: #491c85; color: white; text-align: center; padding: 5px 0; font-size: 13px; letter-spacing: 1px; }
+
+        /* GRID DE PRODUTOS */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
+
+        /* CARD DO PRODUTO */
+        .card { background: white; border-radius: 12px; padding: 20px; text-align: center; text-decoration: none; color: inherit; position: relative; border: 1px solid #EBEBEB; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        /* LINHA ROXA NO FUNDO DO CARD (Efeito da imagem) */
+        .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: #582A9D; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+
+        /* TAGS (40% OFF / ESGOTADO) */
+        .tag { position: absolute; top: 15px; left: 15px; background-color: #8C30F5; color: white; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2; z-index: 2; }
+        .tag-circle { width: 45px; height: 45px; border-radius: 50%; }
+        .tag-rect { background-color: #3B1663; padding: 5px 10px; border-radius: 6px; }
+
+        .card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
+
+        .card-title { font-size: 13px; color: #4A4A4A; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; height: 35px; }
+        
+        .price-box { margin-top: auto; }
+        .price-original { font-size: 13px; color: #999; text-decoration: line-through; margin-right: 8px; }
+        .price-current { font-size: 24px; color: #582A9D; font-weight: 700; }
+        .installments { font-size: 12px; color: #333; margin-top: 5px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; order: 3; }
+            .logo { order: 1; }
+            .whatsapp { position: absolute; right: 20px; top: 20px; order: 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="search-box">
+            <input type="text" placeholder="O que você está buscando?">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
+        
+        <div class="logo">
+            <h1>BUQ <span style="font-style: italic; font-weight: 400;">care</span></h1>
+        </div>
+
+        <div class="whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z"/></svg>
+            Whatsapp
+        </div>
+    </header>
+
+    <div class="sub-header">
+        Guia Santos
+    </div>
+
+    <div class="container">
+        <!-- Aqui é onde a Planilha vai injetar os produtos. Por enquanto coloquei os produtos da sua foto para você ver como fica! -->
+        <div class="grid-produtos" id="lista-produtos"></div>
+    </div>
+
+    <script>
+        // Array simulando os dados da sua planilha (Step 3). 
+        // No próximo passo vamos trocar isso pelo link do Google Sheets!
+        const produtosMock = [
+            { id: 1, nome: "Combo Body Splash Rubi + Royal Buq Care", preco_original: "109,90", preco_atual: "65,90", parcelas: "4 x de R$19,59", tag: "40%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 2, nome: "Kit Cereja Buq Care", preco_original: "119,90", preco_atual: "89,90", parcelas: "6 x de R$18,03", tag: "25%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 3, nome: "Creme Esfoliante Corporal Esfoliah 150g", preco_original: "", preco_atual: "99,90", parcelas: "7 x de R$17,25", tag: "", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 4, nome: "Combo Casal France Body Splash Belle", preco_original: "109,90", preco_atual: "109,90", parcelas: "8 x de R$16,65", tag: "", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 5, nome: "Combo Body Splash Sunset + Dawn", preco_original: "159,90", preco_atual: "99,90", parcelas: "5 x de R$19,90", tag: "42%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 6, nome: "Clareiah Facial 60g Buq Care", preco_original: "89,90", preco_atual: "65,90", parcelas: "3 x de R$21,96", tag: "27%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
+            { id: 7, nome: "Combo Body Splash Jade + Ambar", preco_original: "129,90", preco_atual: "89,90", parcelas: "6 x de R$14,98", tag: "ESGOTADO", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" }
+        ];
+
+        function renderizarProdutos(produtos) {
+            const container = document.getElementById('lista-produtos');
+            container.innerHTML = produtos.map(p => {
+                // Lógica para desenhar a TAG redonda ou retangular (Esgotado)
+                let tagHtml = '';
+                if (p.tag) {
+                    let classeTag = p.tag === 'ESGOTADO' ? 'tag-rect' : 'tag-circle';
+                    tagHtml = `<div class="tag ${classeTag}">${p.tag}</div>`;
+                }
+
+                // Lógica para riscar o preço original se existir
+                let precoHtml = '';
+                if (p.preco_original && p.preco_original !== p.preco_atual) {
+                    precoHtml = `<span class="price-original">R$${p.preco_original}</span>`;
+                }
+
+                return `
+                <a href="produto.html?id=${p.id}" class="card">
+                    ${tagHtml}
+                    <img src="${p.imagem}" alt="${p.nome}">
+                    <div class="card-title">${p.nome}</div>
+                    <div class="price-box">
+                        ${precoHtml}
+                        <span class="price-current">R$${p.preco_atual}</span>
+                        <div class="installments">${p.parcelas}</div>
+                    </div>
+                </a>
+                `;
+            }).join('');
+        }
+
+        // Chama a função para desenhar os produtos na tela
+        renderizarProdutos(produtosMock);
+    </script>
+</body>
+</html>
