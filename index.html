@@ -479,7 +479,7 @@
             <div class="sub-header-items">
                 <span>Guia Santos</span>
 
-                <a class="whatsapp" href="https://api.whatsapp.com/send?1=pt_BR&phone=5585985771028" target="_blank">
+                <a class="whatsapp" href="https://wa.me/5585985771028" target="_blank">
                     <svg viewBox="0 0 24 24">
                         <path
                             d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z" />
@@ -526,7 +526,7 @@
 
     <script>
         const urlPlanilha = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgDqIzCG8Lvm-QWuMYBAFh8WHtJgNEPP8Qo-19OYfVlQMT__NjyKlXtvGMV_mQ0GKpD8quaTGjkw4z/pub?output=csv";
-        const wts = 'https://api.whatsapp.com/send?1=pt_BR&phone=5585985771028';
+        const wts = 'https://wa.me/5585985771028';
         var produtosAtuais = [];
 
         function renderizarProdutos(produtos) {
@@ -551,8 +551,7 @@
                     precoHtml = `<span class="price-original">${moeda(preco_original)}</span>`;
                 }
 
-                let linkProd = `/produto.html?id=${p.id}`;
-                let linkWts = `${wts}&text=Olá! Tenho interesse no produto ${p.nome}`;
+                let linkWts = `${wts}?text=Olá! Tenho interesse no produto ${p.nome}`;
 
                 let htmlPrecoAtual = preco_atual ? `<div class="price-box">${precoHtml} <span class="price-current">${moeda(preco_atual)}</span> </div>` : ``;
 
@@ -628,10 +627,14 @@
                 header: true,
                 skipEmptyLines: true,
                 complete: function (results) {
-
-                    produtosAtuais = results.data.map((produto, index) => {
-                        produto.id = index;
-                        return produto;
+                    produtosAtuais = []; 
+                    let contadorId = 0; 
+                    results.data.forEach(produto => {
+                        if (produto.exibir && produto.exibir.trim().toLowerCase() === 'sim') {
+                            produto.id = contadorId; 
+                            produtosAtuais.push(produto);
+                            contadorId++;
+                        }
                     });
 
                     renderizarProdutos(produtosAtuais);
@@ -653,7 +656,7 @@
             document.getElementById('modal-img').src = produto.imagem;
             document.getElementById('modal-nome').innerText = produto.nome;
 
-            const linkWts = `${wts}&text=Olá! Tenho interesse no produto ${produto.nome}`;
+            const linkWts = `${wts}?text=Olá! Tenho interesse no produto ${produto.nome}`;
             document.getElementById('modal-wts').href = linkWts;
 
             const descBox = document.getElementById('modal-desc');
