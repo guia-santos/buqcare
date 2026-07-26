@@ -1,136 +1,719 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUQ care - Guia Santos</title>
+
+    <link href="favicon.png" rel="icon" type="image/x-icon" />
+    <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+
+    <title>Guia Santos - Buq Care</title>
+
     <style>
-        /* Importando fontes do Google */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #FAFAFA; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-        /* CABEÇALHO (ROXO) */
-        header { background-color: #582A9D; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; color: white; }
-        
-        .search-box { background: white; border-radius: 25px; padding: 8px 15px; display: flex; align-items: center; width: 300px; }
-        .search-box input { border: none; outline: none; width: 100%; color: #582A9D; font-size: 14px; }
-        .search-box svg { fill: #582A9D; width: 20px; height: 20px; cursor: pointer; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-        .logo h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; letter-spacing: 2px; }
-        
-        .whatsapp { display: flex; flex-direction: column; align-items: center; font-size: 12px; cursor: pointer; }
-        .whatsapp svg { width: 24px; height: 24px; fill: white; margin-bottom: 3px; }
+        body {
+            background-color: #FAFAFA;
+        }
 
-        .sub-header { background-color: #491c85; color: white; text-align: center; padding: 5px 0; font-size: 13px; letter-spacing: 1px; }
+        img {
+            max-width: 100%;
+        }
 
-        /* GRID DE PRODUTOS */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
+        .container {
+            max-width: 1230px;
+            padding: 0 10px;
+            margin: 0px auto;
+            width: 100%;
+            position: relative;
+        }
 
-        /* CARD DO PRODUTO */
-        .card { background: white; border-radius: 12px; padding: 20px; text-align: center; text-decoration: none; color: inherit; position: relative; border: 1px solid #EBEBEB; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        header {
+            background-color: #582A9D;
+            color: #fff;
+        }
 
-        /* LINHA ROXA NO FUNDO DO CARD (Efeito da imagem) */
-        .card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: #582A9D; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+        .header-items {
+            padding: 1px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-        /* TAGS (40% OFF / ESGOTADO) */
-        .tag { position: absolute; top: 15px; left: 15px; background-color: #8C30F5; color: white; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.2; z-index: 2; }
-        .tag-circle { width: 45px; height: 45px; border-radius: 50%; }
-        .tag-rect { background-color: #3B1663; padding: 5px 10px; border-radius: 6px; }
+        .header-items .search-box {
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            width: 100%;
+            position: absolute;
+            left: 0;
+        }
 
-        .card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
+        .header-items .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            color: #582A9D;
+            font-size: 14px;
+        }
 
-        .card-title { font-size: 13px; color: #4A4A4A; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; height: 35px; }
-        
-        .price-box { margin-top: auto; }
-        .price-original { font-size: 13px; color: #999; text-decoration: line-through; margin-right: 8px; }
-        .price-current { font-size: 24px; color: #582A9D; font-weight: 700; }
-        .installments { font-size: 12px; color: #333; margin-top: 5px; font-weight: 600; }
+        .header-items .search-box svg {
+            fill: #582A9D;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .header-items .logo {
+            width: 120px;
+        }
+
+        .whatsapp svg,
+        .instagram svg {
+            width: 21px;
+            height: 21px;
+            fill: #fff;
+            margin-top: 4px;
+        }
+
+        .sub-header {
+            background-color: #582A9D;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 21px;
+            letter-spacing: 1px;
+        }
+
+        .sub-header-items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 35px;
+        }
+
+        .div-perfil {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            height: 100%;
+        }
+
+        .div-perfil img {
+            border-radius: 18px;
+            border: 1px solid #582A9D;
+        }
+
+        .banner {
+            background: url('banner.jpg') no-repeat left center;
+            background-size: auto;
+            background-size: cover;
+            height: 470px;
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 0;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            border: 1px solid #E1E1E1;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 2;
+            background-color: #582A9D;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-title {
+            font-size: 13px;
+            color: #411386;
+            font-weight: 500;
+            text-transform: uppercase;
+            min-height: 40px;
+        }
+
+        .price-box {
+            margin-top: auto;
+        }
+
+        .price-original {
+            font-size: 13px;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .price-current {
+            font-size: 20px;
+            color: #582A9D;
+            font-weight: 700;
+        }
+
+        #search-div {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #582a9d;
+            display: none;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: 700;
+            color: #582a9d;
+        }
+
+        @media (max-width: 900px) {
+            .banner {
+                background: url('banner_mobile.jpg') no-repeat left center;
+            }
+        }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
-            .search-box { width: 100%; order: 3; }
-            .logo { order: 1; }
-            .whatsapp { position: absolute; right: 20px; top: 20px; order: 2; }
+            .header-items {
+                flex-direction: column;
+                gap: 1px;
+                padding: 10px 0 20px 0px;
+            }
+
+            .header-items .search-box {
+                width: 100%;
+                order: 2;
+                position: relative;
+            }
+
+            .header-items .logo {
+                order: 1;
+                position: relative;
+            }
+
+            #lista-produtos {
+                grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+                gap: 15px;
+            }
+
+            .card .card-btn .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 535px) {
+            .div-perfil {
+                justify-content: center;
+            }
+        }
+
+        .card-top {
+            position: relative;
+            display: block;
+            height: 100%;
+            border-bottom: 3px solid #582A9D;
+            background: #f6f6f6;
+        }
+
+        .card-bottom {
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card .card-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 11px;
+        }
+
+        .card .card-btn .btn {
+            border: 1px solid #582A9D;
+            border-radius: 35px;
+            font-size: 13px;
+            padding: 4px 6px;
+            color: #582A9D;
+            text-decoration: none;
+            display: flex;
+            align-content: center;
+            gap: 3px;
+            min-width: 90px;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .card .card-btn .btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #582A9D;
+        }
+
+        .card .card-btn .btn:hover {
+            opacity: 0.4;
+        }
+
+        .card .card-btn .btn.sty1 {
+            background: #2acb08;
+            border-color: #2acb08;
+            color: #fff;
+        }
+
+        .card .card-btn .btn.sty1 svg {
+            fill: #fff;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            position: relative;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #582A9D;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 2;
+        }
+
+        .modal-content {
+            display: flex;
+            gap: 15px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .modal-img-container {
+            width: 38%;
+            flex-shrink: 0;
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .modal-info {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-info h2 {
+            color: #411386;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .modal-desc-box {
+            flex-grow: 1;
+            font-size: 13px;
+            color: #454545;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .modal-btn-wts {
+            background: #2acb08;
+            color: #fff;
+            padding: 9px 6px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .modal-btn-wts:hover {
+            opacity: 0.8;
+        }
+
+        .modal-btn-wts svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .modal-img-container {
+                width: 100%;
+            }
+
+            .modal-info {
+                width: 100%;
+            }
+
+            .modal-box {
+                padding: 20px;
+            }
         }
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
+
 <body>
 
     <header>
-        <div class="search-box">
-            <input type="text" placeholder="O que você está buscando?">
-            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        </div>
-        
-        <div class="logo">
-            <h1>BUQ <span style="font-style: italic; font-weight: 400;">care</span></h1>
-        </div>
+        <div class="container">
+            <div class="header-items">
+                <div class="search-box">
+                    <input type="text" placeholder="O que você está buscando?">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                    </svg>
+                </div>
 
-        <div class="whatsapp">
-            <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z"/></svg>
-            Whatsapp
+                <div class="logo">
+                    <img src="logo-buq.webp" alt="Buq Care" class="logo-img">
+                </div>
+            </div>
         </div>
     </header>
 
+    <div class="banner">
+        <div class="container">
+            <div class="div-perfil">
+                <img src="guia.jpg">
+            </div>
+        </div>
+    </div>
+
     <div class="sub-header">
-        Guia Santos
+        <div class="container">
+            <div class="sub-header-items">
+                <span>Guia Santos</span>
+
+                <a class="whatsapp" href="https://api.whatsapp.com/send?1=pt_BR&phone=5585985771028" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z" />
+                    </svg>
+                </a>
+
+                <a class="instagram" href="https://instagram.com/" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="container">
-        <!-- Aqui é onde a Planilha vai injetar os produtos. Por enquanto coloquei os produtos da sua foto para você ver como fica! -->
+        <div class="page-title">Catálogo de Produtos</div>
         <div class="grid-produtos" id="lista-produtos"></div>
     </div>
 
+    <div id="modal-produto" class="modal-overlay">
+        <div class="modal-box">
+            <button class="fechar-modal" onclick="fecharModal()">&times;</button>
+            <div class="modal-content">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="Produto">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-nome"></h2>
+                    <div id="modal-desc" class="modal-desc-box"></div>
+                    <a id="modal-wts" href="#" target="_blank" class="modal-btn-wts">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z">
+                            </path>
+                        </svg>
+                        Falar agora via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Array simulando os dados da sua planilha (Step 3). 
-        // No próximo passo vamos trocar isso pelo link do Google Sheets!
-        const produtosMock = [
-            { id: 1, nome: "Combo Body Splash Rubi + Royal Buq Care", preco_original: "109,90", preco_atual: "65,90", parcelas: "4 x de R$19,59", tag: "40%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 2, nome: "Kit Cereja Buq Care", preco_original: "119,90", preco_atual: "89,90", parcelas: "6 x de R$18,03", tag: "25%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 3, nome: "Creme Esfoliante Corporal Esfoliah 150g", preco_original: "", preco_atual: "99,90", parcelas: "7 x de R$17,25", tag: "", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 4, nome: "Combo Casal France Body Splash Belle", preco_original: "109,90", preco_atual: "109,90", parcelas: "8 x de R$16,65", tag: "", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 5, nome: "Combo Body Splash Sunset + Dawn", preco_original: "159,90", preco_atual: "99,90", parcelas: "5 x de R$19,90", tag: "42%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 6, nome: "Clareiah Facial 60g Buq Care", preco_original: "89,90", preco_atual: "65,90", parcelas: "3 x de R$21,96", tag: "27%<br>OFF", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" },
-            { id: 7, nome: "Combo Body Splash Jade + Ambar", preco_original: "129,90", preco_atual: "89,90", parcelas: "6 x de R$14,98", tag: "ESGOTADO", imagem: "https://i.ibb.co/2Z5qG0B/produto-placeholder.png" }
-        ];
+        const urlPlanilha = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgDqIzCG8Lvm-QWuMYBAFh8WHtJgNEPP8Qo-19OYfVlQMT__NjyKlXtvGMV_mQ0GKpD8quaTGjkw4z/pub?output=csv";
+        const wts = 'https://api.whatsapp.com/send?1=pt_BR&phone=5585985771028';
+        var produtosAtuais = [];
 
         function renderizarProdutos(produtos) {
             const container = document.getElementById('lista-produtos');
+
+            if (produtos.length === 0) {
+                container.innerHTML = "<p style=\"text-align:center; width: 100%;position: absolute;\">Nenhum resultado</p>";
+                return;
+            }
+
             container.innerHTML = produtos.map(p => {
-                // Lógica para desenhar a TAG redonda ou retangular (Esgotado)
                 let tagHtml = '';
-                if (p.tag) {
-                    let classeTag = p.tag === 'ESGOTADO' ? 'tag-rect' : 'tag-circle';
-                    tagHtml = `<div class="tag ${classeTag}">${p.tag}</div>`;
+                if (typeof p.tag != "undefined" && p.tag && p.tag.trim() !== "") {
+                    tagHtml = `<div class="tag tag-rect">${p.tag}</div>`;
                 }
 
-                // Lógica para riscar o preço original se existir
+                let preco_atual = typeof p.preco_atual != "undefined" && p.preco_atual && p.preco_atual.trim() !== "" ? remover_moeda(p.preco_atual) : 0;
+                let preco_original = typeof p.preco_original != "undefined" && p.preco_original && p.preco_original.trim() !== "" ? remover_moeda(p.preco_original) : 0;
+
                 let precoHtml = '';
-                if (p.preco_original && p.preco_original !== p.preco_atual) {
-                    precoHtml = `<span class="price-original">R$${p.preco_original}</span>`;
+                if (preco_original && preco_original !== preco_atual) {
+                    precoHtml = `<span class="price-original">${moeda(preco_original)}</span>`;
                 }
+
+                let linkProd = `/produto.html?id=${p.id}`;
+                let linkWts = `${wts}&text=Olá! Tenho interesse no produto ${p.nome}`;
+
+                let htmlPrecoAtual = preco_atual ? `<div class="price-box">${precoHtml} <span class="price-current">${moeda(preco_atual)}</span> </div>` : ``;
+
+                let htmlQuantidade = typeof p.quantidade != "undefined" && p.quantidade && p.quantidade.trim() !== "" ? `<div class="price-box"><span class="price-current">${p.quantidade} Disponíveis</span></div>` : ``;
 
                 return `
-                <a href="produto.html?id=${p.id}" class="card">
-                    ${tagHtml}
-                    <img src="${p.imagem}" alt="${p.nome}">
-                    <div class="card-title">${p.nome}</div>
-                    <div class="price-box">
-                        ${precoHtml}
-                        <span class="price-current">R$${p.preco_atual}</span>
-                        <div class="installments">${p.parcelas}</div>
+                <div class="card">
+                    <a class="card-top" href="${linkWts}" target="_blank">
+                        ${typeof p.imagem != "undefined" && p.imagem ? `<img src="${p.imagem}" title="${p.nome}" alt="${p.nome}">` : ``}
+                        ${tagHtml}
+                    </a>
+
+                    <div class="card-bottom">
+                        <div class="card-title">${p.nome}</div>
+                        ${htmlPrecoAtual}
+                        ${htmlQuantidade}
+                        <div class="card-btn">
+                            <a href="${linkWts}" target="_blank" class="btn sty1">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.23c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.89 2.38 1.01 2.54c.12.17 1.73 2.66 4.2 3.66.59.24 1.05.38 1.41.49.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.28z"></path>
+                                </svg> 
+                                Falar Whatsapp
+                            </a>
+                            <span class="btn" onclick="abrirModal('${p.id}');">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+                                </svg>
+                                Espiar
+                            </span>
+                        </div>
                     </div>
-                </a>
+                </div>
                 `;
             }).join('');
         }
+        function moeda(valor, exibir_sifrao = true, sifrao = 'R$') {
+            valor = parseFloat(valor).toFixed(2).split('.');
+            let inteiro = valor[0];
+            let decimal = valor[1];
+            inteiro = inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return (exibir_sifrao ? sifrao + '' : '') + inteiro + ',' + decimal;
+        }
+        function remover_moeda(valor) {
+            valor = valor.replace(/[^\d,-]/g, '').replace('.', '').replace(',', '.');
+            return parseFloat(valor) || 0;
+        }
 
-        // Chama a função para desenhar os produtos na tela
-        renderizarProdutos(produtosMock);
+        document.querySelector('.search-box input').addEventListener('input', function (e) {
+            let txtSearch = e.target.value;
+            const termoBusca = normalizarString(txtSearch);
+            const produtosFiltrados = produtosAtuais.filter(p => normalizarString(p.nome).includes(termoBusca));
+            renderizarProdutos(produtosFiltrados);
+
+            const pageTitle = document.querySelector('.page-title');
+            if (txtSearch.trim() !== "") {
+                pageTitle.textContent = `Resultados da Busca: "${txtSearch}"`;
+            } else {
+                pageTitle.textContent = "Catálogo de Produtos";
+            }
+        });
+
+        function normalizarString(str) {
+            if (!str) return "";
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "").toLowerCase();
+        }
+
+        function carregarDadosDaPlanilha() {
+            const container = document.getElementById('lista-produtos');
+            container.innerHTML = "<p style=\"text-align:center; width: 100%;position: absolute;\">Carregando Catálogo ...</p>";
+
+            Papa.parse(urlPlanilha, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function (results) {
+                    produtosAtuais = results.data;
+                    renderizarProdutos(produtosAtuais);
+                },
+                error: function (err) {
+                    console.error("Erro ao ler a planilha:", err);
+                    container.innerHTML = "<p style=\"text-align:center; width: 100%;position: absolute;\">Catálogo não carregado. Tente novamente mais tarde!</p>";
+                }
+            });
+        }
+        carregarDadosDaPlanilha();
+    </script>
+    <script>
+        function abrirModal(id) {
+            const produto = produtosAtuais.find(p => p.id == id);
+            if (!produto) return;
+
+            document.getElementById('modal-img').src = produto.imagem;
+            document.getElementById('modal-nome').innerText = produto.nome;
+
+            const linkWts = `${wts}&text=Olá! Tenho interesse no produto ${produto.nome}`;
+            document.getElementById('modal-wts').href = linkWts;
+
+            const descBox = document.getElementById('modal-desc');
+            descBox.innerHTML = '<i>Carregando Aguarde...</i>';
+
+            document.getElementById('modal-produto').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            if (produto.link && produto.link.trim() !== "") {
+                const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(produto.link)}`;
+
+                fetch(proxyUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error("Falha na rede");
+                        return response.text();
+                    })
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const descricaoEl = doc.querySelector('#product-description .product-description');
+                        if (descricaoEl) {
+                            descBox.innerHTML = descricaoEl.innerHTML;
+                        } else {
+                            descBox.innerHTML = '';
+                            console.log('Detalhes não encontrados nesta página oficial');
+                        }
+                    })
+                    .catch(() => {
+                        const backupProxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(produto.link)}`;
+                        fetch(backupProxyUrl)
+                            .then(res => res.text())
+                            .then(htmlBackup => {
+                                const parserB = new DOMParser();
+                                const docB = parserB.parseFromString(htmlBackup, 'text/html');
+                                const descricaoElB = docB.querySelector('#product-description');
+
+                                if (descricaoElB) {
+                                    descBox.innerHTML = descricaoElB.innerHTML;
+                                } else {
+                                    descBox.innerHTML = '';
+                                    console.log('Detalhes não encontrados nesta página.');
+                                }
+                            })
+                            .catch(() => {
+                                descBox.innerHTML = '';
+                                console.log('Não foi possível carregar a descrição no momento.');
+                            });
+                    });
+            } else {
+                descBox.innerHTML = '';
+                console.log('Descrição não disponível para este produto.');
+            }
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-produto').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modal-produto').addEventListener('click', function (e) {
+            if (e.target === this) {
+                fecharModal();
+            }
+        });
     </script>
 </body>
+
 </html>
