@@ -453,7 +453,7 @@
             <div class="header-items">
                 <div class="search-box">
                     <input type="text" placeholder="O que você está buscando?">
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" id="btn-search">
                         <path
                             d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
                     </svg>
@@ -599,25 +599,6 @@
             return parseFloat(valor) || 0;
         }
 
-        document.querySelector('.search-box input').addEventListener('input', function (e) {
-            let txtSearch = e.target.value;
-            const termoBusca = normalizarString(txtSearch);
-            const produtosFiltrados = produtosAtuais.filter(p => normalizarString(p.nome).includes(termoBusca));
-            renderizarProdutos(produtosFiltrados);
-
-            const pageTitle = document.querySelector('.page-title');
-            if (txtSearch.trim() !== "") {
-                pageTitle.textContent = `Resultados da Busca: "${txtSearch}"`;
-            } else {
-                pageTitle.textContent = "Catálogo de Produtos";
-            }
-        });
-
-        function normalizarString(str) {
-            if (!str) return "";
-            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "").toLowerCase();
-        }
-
         function carregarDadosDaPlanilha() {
             const container = document.getElementById('lista-produtos');
             container.innerHTML = "<p style=\"text-align:center; width: 100%;position: absolute;\">Carregando Catálogo ...</p>";
@@ -627,11 +608,11 @@
                 header: true,
                 skipEmptyLines: true,
                 complete: function (results) {
-                    produtosAtuais = []; 
-                    let contadorId = 0; 
+                    produtosAtuais = [];
+                    let contadorId = 0;
                     results.data.forEach(produto => {
                         if (produto.exibir && produto.exibir.trim().toLowerCase() === 'sim') {
-                            produto.id = contadorId; 
+                            produto.id = contadorId;
                             produtosAtuais.push(produto);
                             contadorId++;
                         }
@@ -648,6 +629,40 @@
 
         carregarDadosDaPlanilha();
     </script>
+
+    <script>
+        function normalizarString(str) {
+            if (!str) return "";
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "").toLowerCase();
+        }
+
+        document.querySelector('.search-box input').addEventListener('input', function (e) {
+            let txtSearch = e.target.value;
+            const termoBusca = normalizarString(txtSearch);
+            const produtosFiltrados = produtosAtuais.filter(p => normalizarString(p.nome).includes(termoBusca));
+            renderizarProdutos(produtosFiltrados);
+
+            const pageTitle = document.querySelector('.page-title');
+            if (txtSearch.trim() !== "") {
+                pageTitle.textContent = `Resultados da Busca: "${txtSearch}"`;
+            } else {
+                pageTitle.textContent = "Catálogo de Produtos";
+            }
+        });
+
+        const btnSearch = document.getElementById('btn-search');
+        if (btnSearch) {
+            btnSearch.addEventListener('click', function (event) {
+                event.preventDefault();
+                const destino = document.getElementById('lista-produtos');
+                if (destino) {
+                    destino.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        }
+
+    </script>
+
     <script>
         function abrirModal(id) {
             const produto = produtosAtuais.find(p => p.id == id);
